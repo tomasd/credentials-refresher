@@ -16,6 +16,7 @@
 
 (defn create-saml-assertion [email password]
   (let [resp                    (-> (Jsoup/connect "https://adfs.ccta.dk/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=urn:amazon:webservices")
+                                    (.userAgent "curl/7.64.1")
                                     (.followRedirects true)
                                     (.execute))
 
@@ -28,12 +29,14 @@
                                     (.val password))
         result                  (-> (.submit login-form)
                                     (.cookies (.cookies resp))
+                                    (.userAgent "curl/7.64.1")
                                     (.followRedirects true)
                                     (.execute))
         roles-result            (-> (.parse result)
                                     (.select "form")
                                     ^FormElement (.first)
                                     (.submit)
+                                    (.userAgent "curl/7.64.1")
                                     (.followRedirects true)
                                     (.cookies (.cookies result))
                                     (.post))]
