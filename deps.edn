@@ -1,5 +1,6 @@
 {:deps {com.amazonaws/aws-java-sdk-sts {:mvn/version "1.11.683"}
         org.jsoup/jsoup                {:mvn/version "1.13.1"}
+        buddy/buddy-core               {:mvn/version "1.6.0"}
         org.clojure/core.async         {:mvn/version "0.4.500"}
         org.clojure/tools.logging      {:mvn/version "0.4.1"}}
 
